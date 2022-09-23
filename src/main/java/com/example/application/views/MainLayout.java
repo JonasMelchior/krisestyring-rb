@@ -1,8 +1,6 @@
 package com.example.application.views;
 
 
-import com.example.application.views.about.AboutView;
-import com.example.application.views.helloworld.HelloWorldView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.dependency.NpmPackage;
@@ -13,6 +11,8 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.RouterLink;
 
 /**
@@ -27,7 +27,7 @@ public class MainLayout extends AppLayout {
 
         private final Class<? extends Component> view;
 
-        public MenuItemInfo(String menuTitle, String iconClass, Class<? extends Component> view) {
+        public MenuItemInfo(String menuTitle, Icon icon, Class<? extends Component> view) {
             this.view = view;
             RouterLink link = new RouterLink();
             // Use Lumo classnames for various styling
@@ -38,7 +38,7 @@ public class MainLayout extends AppLayout {
             // Use Lumo classnames for various styling
             text.addClassNames("font-medium", "text-m", "whitespace-nowrap");
 
-            link.add(new LineAwesomeIcon(iconClass), text);
+            link.add(icon, text);
             add(link);
         }
 
@@ -97,9 +97,9 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
-                new MenuItemInfo("Hello World", "la la-file", HelloWorldView.class), //
+                new MenuItemInfo("Registered Users", new Icon(VaadinIcon.USERS), RegisteredUsersView.class), //
 
-                new MenuItemInfo("About", "la la-file", AboutView.class), //
+                new MenuItemInfo("Crisis Tools", new Icon(VaadinIcon.TOOLBOX), CrisisToolView.class), //
 
         };
     }

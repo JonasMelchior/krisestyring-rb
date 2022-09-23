@@ -118,6 +118,13 @@
     "@vaadin/virtual-list": "23.2.1",
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.28.0",
+    "leaflet": "1.6.0",
+    "leaflet-canvas-marker": "0.2.1",
+    "leaflet-kmz": "1.0.4",
+    "leaflet.fullscreen": "1.6.0",
+    "leaflet.heat": "0.2.0",
+    "leaflet.markercluster": "1.4.1",
+    "line-awesome": "1.3.0",
     "lit": "2.3.0",
     "proj4": "2.8.0"
   },
@@ -253,7 +260,14 @@
     "@polymer/polymer": "$@polymer/polymer",
     "date-fns": "$date-fns",
     "@vaadin/multi-select-combo-box": "$@vaadin/multi-select-combo-box",
-    "proj4": "$proj4"
+    "proj4": "$proj4",
+    "line-awesome": "$line-awesome",
+    "leaflet": "$leaflet",
+    "leaflet-canvas-marker": "$leaflet-canvas-marker",
+    "leaflet-kmz": "$leaflet-kmz",
+    "leaflet.fullscreen": "$leaflet.fullscreen",
+    "leaflet.heat": "$leaflet.heat",
+    "leaflet.markercluster": "$leaflet.markercluster"
   },
   "vaadin": {
     "dependencies": {
@@ -372,6 +386,13 @@
       "@vaadin/virtual-list": "23.2.1",
       "construct-style-sheets-polyfill": "3.1.0",
       "date-fns": "2.28.0",
+      "leaflet": "1.6.0",
+      "leaflet-canvas-marker": "0.2.1",
+      "leaflet-kmz": "1.0.4",
+      "leaflet.fullscreen": "1.6.0",
+      "leaflet.heat": "0.2.0",
+      "leaflet.markercluster": "1.4.1",
+      "line-awesome": "1.3.0",
       "lit": "2.3.0",
       "proj4": "2.8.0"
     },
@@ -390,6 +411,6 @@
       "workbox-core": "6.5.0",
       "workbox-precaching": "6.5.0"
     },
-    "hash": "04406105025eabf9ba258930407548456a9ffb740fe100a52366bb01c211f75f"
+    "hash": "77b2b226a5ea7995570f176439ab45ad243259d77484c3858598757032f13f64"
   }
 }

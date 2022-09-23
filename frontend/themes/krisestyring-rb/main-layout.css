@@ -24,3 +24,13 @@ header nav a[highlight] span {
 header nav a[highlight] {
   background-color: var(--lumo-primary-color-10pct);
 }
+
+.layout-with-border-activity-component {
+  border-radius: initial;
+  border: 4px solid lightskyblue;
+  width: border-box;
+  height: border-box;
+  position: center;
+  border-spacing: initial;
+  margin: 3px;
+}

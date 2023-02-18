@@ -4,11 +4,12 @@ package com.example.application.service;
 import com.example.application.entity.User;
 import com.example.application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@org.springframework.stereotype.Service
+@Service
 public class UserService implements IUserService{
 
     @Autowired
@@ -27,6 +28,11 @@ public class UserService implements IUserService{
     @Override
     public void save(User user) {
         repository.save(user);
+    }
+
+    @Override
+    public void saveAll(List<User> users) {
+        repository.saveAll(users);
     }
 
     @Override

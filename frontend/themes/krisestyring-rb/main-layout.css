@@ -34,3 +34,9 @@ header nav a[highlight] {
   border-spacing: initial;
   margin: 3px;
 }
+
+.crisis-event-layout {
+  position: center;
+  width: 600px;
+}
+

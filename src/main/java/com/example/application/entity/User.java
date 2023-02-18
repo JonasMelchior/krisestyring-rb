@@ -18,6 +18,9 @@ public class User {
     private String email;
     private String phoneNumber;
     private Double cprNumber;
+    private String registeredThrough;
+    private String competences;
+    private boolean physicalWork;
 
 
     public User() {
@@ -29,6 +32,60 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.cprNumber = cprNumber;
+    }
+
+    public User(String firstName, String lastName, String email, String phoneNumber, Double cprNumber, String registeredThrough) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.cprNumber = cprNumber;
+        this.registeredThrough = registeredThrough;
+    }
+
+    public User(String firstName, String lastName, String email, String phoneNumber, Double cprNumber, String registeredThrough, String competences) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.cprNumber = cprNumber;
+        this.registeredThrough = registeredThrough;
+        this.competences = competences;
+    }
+
+    public User(String firstName, String lastName, String email, String phoneNumber, Double cprNumber, String registeredThrough, String competences, boolean physicalWork) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.cprNumber = cprNumber;
+        this.registeredThrough = registeredThrough;
+        this.competences = competences;
+        this.physicalWork = physicalWork;
+    }
+
+    public boolean isPhysicalWork() {
+        return physicalWork;
+    }
+
+    public void setPhysicalWork(boolean physicalWork) {
+        this.physicalWork = physicalWork;
+    }
+
+    public String getCompetences() {
+        return competences;
+    }
+
+    public void setCompetences(String competences) {
+        this.competences = competences;
+    }
+
+    public String getRegisteredThrough() {
+        return registeredThrough;
+    }
+
+    public void setRegisteredThrough(String registeredThrough) {
+        this.registeredThrough = registeredThrough;
     }
 
     public String getFirstName() {

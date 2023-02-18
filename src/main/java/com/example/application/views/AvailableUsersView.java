@@ -1,60 +1,42 @@
 package com.example.application.views;
 
+
 import com.example.application.entity.User;
-import com.example.application.service.CrisisEventService;
 import com.example.application.service.ICrisisEventService;
 import com.example.application.service.IUserService;
-import com.example.application.service.UserService;
-import com.example.application.views.components.CrisisEventForm;
-import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.avatar.Avatar;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.renderer.Rendering;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-import com.vaadin.flow.server.VaadinSession;
-import com.vaadin.flow.theme.lumo.LumoIcon;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-@PageTitle("Registered Users")
-@Route(value = "registered-users", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
-public class RegisteredUsersView extends VerticalLayout {
+@PageTitle("Available Users")
+@Route(value = "available-users", layout = MainLayout.class)
+public class AvailableUsersView extends VerticalLayout {
 
-    Grid<User> userGrid = new Grid<>(User.class, false);
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private ICrisisEventService crisisEventService;
+
+    Grid<User> userGrid = new Grid<>(User.class, false);
     GridListDataView<User> dataView;
 
     TextField searchField = new TextField();
 
-
-    public RegisteredUsersView(@Autowired CrisisEventService crisisEventService) {
-        CrisisEventForm crisisEventForm = new CrisisEventForm(crisisEventService);
-        crisisEventForm.setVisible(false);
-        Button registerCrisisEventButton = new Button("Show Crisis Event Form", new Icon(VaadinIcon.ARROW_DOWN));
-        registerCrisisEventButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        registerCrisisEventButton.addClickListener(event -> {
-            crisisEventForm.setVisible(!crisisEventForm.isVisible());
-        });
-
-
-
+    public AvailableUsersView() {
         userGrid.addColumn(User::getFirstName).setHeader("First Name").setSortable(true);
         userGrid.addColumn(User::getLastName).setHeader("Last Name").setSortable(true);
         userGrid.addComponentColumn( event -> {
@@ -70,23 +52,13 @@ public class RegisteredUsersView extends VerticalLayout {
         userGrid.addColumn(User::getCprNumber).setHeader("CPR Number").setSortable(true);
         userGrid.addColumn(User::getRegisteredThrough).setHeader("Registered Through").setSortable(true);
         userGrid.addColumn(User::getCompetences).setHeader("Competences").setSortable(true);
-        userGrid.setSelectionMode(Grid.SelectionMode.MULTI);
-        userGrid.addSelectionListener( selection -> {
-            crisisEventForm.setSelectedUsers(selection.getAllSelectedItems().stream().toList());
-        });
-
-        userGrid.setHeight("500px");
-
 
         searchField.setWidth("50%");
         searchField.setPlaceholder("Search");
         searchField.setPrefixComponent(new Icon(VaadinIcon.SEARCH));
         searchField.setValueChangeMode(ValueChangeMode.EAGER);
 
-        HorizontalLayout crisisEventLayout = new HorizontalLayout(crisisEventForm);
-        crisisEventLayout.setPadding(true);
-
-        add(registerCrisisEventButton, crisisEventLayout, searchField, userGrid);
+        add(searchField, userGrid);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
     }
 
@@ -96,7 +68,14 @@ public class RegisteredUsersView extends VerticalLayout {
 
     @PostConstruct
     public void postConstructor() {
-        dataView = userGrid.setItems(userService.findAll());
+        List<String> userIdStrings =  Arrays.stream(crisisEventService.findAll().get(0).getAvailableVolunteers().split(";")).toList();
+        List<Long> userIds = new ArrayList<>();
+
+        for (String id : userIdStrings) {
+            userIds.add(Long.valueOf(id));
+        }
+
+        dataView = userGrid.setItems(userService.findAllById(userIds));
         searchField.addValueChangeListener(e -> dataView.refreshAll());
 
         dataView.addFilter(person -> {
@@ -122,5 +101,4 @@ public class RegisteredUsersView extends VerticalLayout {
             return matchesFirstName || matchesLastName || matchesEmail || matchesPhoneNumber || matchesCprNumber || matchesRegisteredThrough || matchesCompetences;
         });
     }
-
 }

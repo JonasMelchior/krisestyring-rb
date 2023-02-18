@@ -97,9 +97,8 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
-                new MenuItemInfo("Registered Users", new Icon(VaadinIcon.USERS), RegisteredUsersView.class), //
-
-                new MenuItemInfo("Crisis Tools", new Icon(VaadinIcon.TOOLBOX), CrisisToolView.class), //
+                new MenuItemInfo("Registered Users", new Icon(VaadinIcon.USERS), RegisteredUsersView.class),
+                new MenuItemInfo("Available Users", new Icon(VaadinIcon.USER_CHECK), AvailableUsersView.class)
 
         };
     }

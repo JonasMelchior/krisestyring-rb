@@ -75,6 +75,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -101,6 +103,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>2.5.0</version>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -165,6 +173,12 @@
             <artifactId>mailsender</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xdev-software</groupId>
+            <artifactId>vaadin-maps-leaflet-flow</artifactId>
+            <version>1.0.4</version>
         </dependency>
 
         <!--<dependency> -->

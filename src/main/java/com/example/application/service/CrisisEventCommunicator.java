@@ -58,7 +58,8 @@ public class CrisisEventCommunicator {
             email.setHostName("smtp.office365.com");
             email.setSmtpPort(587);
             //email.setSSLOnConnect(true);
-            email.setAuthenticator(new DefaultAuthenticator("jonas@fibrenetix.com", "Pve87psp"));
+            //TODO - need to set default authenticator
+
             email.setStartTLSEnabled(true);
             email.setFrom("jonas@fibrenetix.com");
             email.addTo(toEmail);
